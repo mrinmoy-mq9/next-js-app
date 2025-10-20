@@ -2,8 +2,8 @@
 name: Integration
 
 on:
-  push:
-    branches: ["workflow/integration"]
+  # push:
+  #   branches: ["workflow/integration"]
   pull_request: 
     branches: ["main"]
 
@@ -37,7 +37,7 @@ jobs:
 
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    
+
     strategy:
       matrix:
         node-version: [  18.x  , 20.x]
