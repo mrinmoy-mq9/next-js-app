@@ -3,49 +3,53 @@ name: Integration
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
+  pull_request: 
+    branches: ["main"]
+
+
 
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs_on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: [18.x, 20.x, 22.x]
+        node-version: [ 14.x , 16.x,  18.x ]
+
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - name: "Installing Dependencies"
-      run: npm i
+      - uses: actions/checkout@v4
+      - name: Use Node.js ${{ matrix.node-version}}
+        uses: actions/setup-node@3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      - name: "Installing Dependency"
+        run: npm i 
+      - name: "Build command"
+        run: npm run build 
 
-    - name: "Build command"
-      run: npm run build
 
-  unit-tests:
+  unit-test:
 
-    runs-on: ubuntu-latest
+    runs_on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: [18.x, 20.x, 22.x]
+        node-version: [ 14.x , 16.x,  18.x ]
+
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - name: "Installing Dependencies"
-      run: npm i
+      - uses: actions/checkout@v4
+      - name: Use Node.js ${{ matrix.node-version}}
+        uses: actions/setup-node@3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      - name: "Installing Dependency"
+        run: npm i 
 
-    - name: "Running test cases"
-      run: npm run test
+      - name: "Running test cases"
+        run: npm run test 
