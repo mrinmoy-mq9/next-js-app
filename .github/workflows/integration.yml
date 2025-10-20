@@ -3,7 +3,7 @@ name: Integration
 
 on:
   push:
-    branches: ["main"]
+    branches: ["workflow/integration"]
   pull_request: 
     branches: ["main"]
 
